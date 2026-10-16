@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight educational security log analysis dashboard.">
+  <title>Sentinel | Security Log Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Sentinel home"><span class="brand-mark">S</span><span>sentinel<span class="brand-muted"> / analyzer</span></span></a>
+    <span class="status"><span class="status-dot"></span><span id="health-label">Connecting</span></span>
+  </header>
+  <main class="container">
+    <section class="intro">
+      <p class="eyebrow">SECURITY OPERATIONS / LOCAL WORKSPACE</p>
+      <h1>Log intelligence,<br><span>without the noise.</span></h1>
+      <p class="subhead">Inspect events, identify suspicious patterns, and prioritize what deserves attention.</p>
+    </section>
+
+    <section class="metrics" aria-label="Event summary">
+      <article class="metric metric-total"><span>Total events</span><strong id="count-total">—</strong><small>Recorded in local dataset</small></article>
+      <article class="metric"><span>Critical</span><strong id="count-critical" class="critical">—</strong><small>Immediate review</small></article>
+      <article class="metric"><span>High</span><strong id="count-high" class="high">—</strong><small>Priority investigation</small></article>
+      <article class="metric"><span>Medium</span><strong id="count-medium" class="medium">—</strong><small>Needs attention</small></article>
+      <article class="metric"><span>Low / Info</span><strong id="count-other">—</strong><small>Routine activity</small></article>
+    </section>
+
+    <section class="panel analyzer">
+      <div class="panel-heading"><div><p class="eyebrow">QUICK ANALYSIS</p><h2>Analyze a log entry</h2></div><span class="panel-index">01 / ANALYZE</span></div>
+      <form id="analyze-form">
+        <label for="log-input">Log sample</label>
+        <textarea id="log-input" name="log" maxlength="5000" placeholder="e.g. Multiple failed logins detected for user admin from 203.0.113.42" required></textarea>
+        <div class="form-footer"><span class="hint">Rule-based detection · 5,000 character limit</span><button type="submit" id="analyze-button">Analyze event <span aria-hidden="true">↗</span></button></div>
+      </form>
+      <div id="analysis-result" class="result" role="status" aria-live="polite" hidden></div>
+    </section>
+
+    <section class="panel events-panel">
+      <div class="panel-heading"><div><p class="eyebrow">EVENT STREAM</p><h2>Recent security events</h2></div><span class="panel-index">02 / MONITOR</span></div>
+      <div class="toolbar">
+        <label class="search-wrap"><span class="sr-only">Search events</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search events…"></label>
+        <label class="sr-only" for="severity-filter">Filter by severity</label>
+        <select id="severity-filter"><option value="all">All severities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option><option value="info">Info</option></select>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Severity</th><th>Event</th><th>Source</th><th>Timestamp</th></tr></thead><tbody id="events-body"><tr><td colspan="4" class="empty">Loading events…</td></tr></tbody></table></div>
+      <p id="events-count" class="table-note"></p>
+    </section>
+    <footer><span>SENTINEL ANALYZER <span class="brand-muted">· EDUCATIONAL DEMO</span></span><span>Keyword-based classification is not a substitute for SIEM analysis.</span></footer>
+  </main>
+</body>
+</html>

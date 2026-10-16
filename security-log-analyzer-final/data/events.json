@@ -1,0 +1,7 @@
+[
+  {"severity":"critical","message":"Malware confirmed on workstation WS-014","source":"10.0.0.14","timestamp":"2026-10-16T08:42:00Z"},
+  {"severity":"high","message":"Multiple failed logins for administrator account","source":"203.0.113.42","timestamp":"2026-10-16T08:31:00Z"},
+  {"severity":"medium","message":"Blocked connection to unusual destination","source":"10.0.0.22","timestamp":"2026-10-16T08:18:00Z"},
+  {"severity":"low","message":"Password changed for user j.smith","source":"10.0.0.31","timestamp":"2026-10-16T07:55:00Z"},
+  {"severity":"info","message":"Scheduled system backup completed","source":"backup-node-01","timestamp":"2026-10-16T07:30:00Z"}
+]
